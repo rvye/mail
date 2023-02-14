@@ -1,8 +1,6 @@
 # mail
 mail client in python
 
-#### Rewrite coming soon 👀
-
 # Contributors
 
 * me.
@@ -10,3 +8,8 @@ mail client in python
 # Thanks
 
 * [Python](https://python.org) for the language, and documentation
+
+# How to Use
+
+- Open main.py (rewritten code) or old.py (old code)
+- Enjoy.

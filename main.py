@@ -1,5 +1,6 @@
-## TODO ##
-## Clean sending gui
+## Python Mail Client
+##
+## by @rvye
 
 import sys
 import tkinter as tk

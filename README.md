@@ -5,7 +5,7 @@ mail client in python
 
 # Contributors
 
-#### * me.
+* me.
 
 # Thanks
 

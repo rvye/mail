@@ -2,6 +2,9 @@
 ##
 ## by @rvye
 
+## TODO
+##
+## Rewrite
 import sys
 import tkinter as tk
 import smtplib as sm

@@ -49,7 +49,7 @@ def EmailPrompt():
     # Body variables
     bodyInput = tk.StringVar()
     bodyLabel = ttk.Label(prompt, text="What would you like to say?")
-    bodyBox = ttk.Label(prompt, textvariable=bodyInput)
+    bodyBox = ttk.Entry(prompt, textvariable=bodyInput)
 
     # Function used for actually sending the email
     def sendEmail():
@@ -83,10 +83,10 @@ def EmailPrompt():
 
             # Actually sending the email
             mail.sendmail(user, to, body)
-            mail.quit()
+	    mail.quit()
             return 1
 
-        except exepction as ex:
+        except exception as ex:
             print("Exception: ", ex)
             return 0
 
@@ -101,7 +101,7 @@ def EmailPrompt():
 
     # Packing the "body" boxes and labels
     bodyLabel.pack(fill='x', expand=True)
-    bodyInput.pack(fill='x', expand=True)
+    bodyBox.pack(fill='x', expand=True)
 
     # Packing the send Button
     send.pack(fill='x', expand=True)

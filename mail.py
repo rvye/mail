@@ -47,7 +47,7 @@ def EmailPrompt():
     toBox = ttk.Entry(prompt, textvariable=toInput)
 
     # Body variables
-    bodyInput = tk.StringVar
+    bodyInput = tk.StringVar()
     bodyLabel = ttk.Label(prompt, text="What would you like to say?")
     bodyBox = ttk.Label(prompt, textvariable=bodyInput)
 
@@ -58,8 +58,8 @@ def EmailPrompt():
         # from toBox, and bodyBox, so that the 
         # email will be properly sent.
         """""
-        to = toBox.get()
-        body = bodyBox.get()
+        to = toInput.get()
+        body = bodyInput.get()
         
         # Opens the file containing user login
         userFile = open("email.txt", "r")
@@ -67,8 +67,8 @@ def EmailPrompt():
         userFile.close()
 
         # Opens the file containing user password
-        passFile = open("pass.txt", "r")
-        pass = passFile.read()
+        passFile = open("password.txt", "r")
+        password = passFile.read()
         userFile.close()
         
         # Sending the email
@@ -79,7 +79,7 @@ def EmailPrompt():
             mail.ehlo()
 
             # Logging into the SMTP Server
-            mail.login(user, pass)
+            mail.login(user, password)
 
             # Actually sending the email
             mail.sendmail(user, to, body)
@@ -96,12 +96,12 @@ def EmailPrompt():
     # Packing the Labels, Prompts, and Buttons, allowing them to display onscreen
     
     # Packing the "to" boxes and labels
-    toBox.pack(fill='x', expand=True)
     toLabel.pack(fill='x', expand=True)
+    toBox.pack(fill='x', expand=True)
 
     # Packing the "body" boxes and labels
-    bodyBox.pack(fill='x', expand=True)
     bodyLabel.pack(fill='x', expand=True)
+    bodyInput.pack(fill='x', expand=True)
 
     # Packing the send Button
     send.pack(fill='x', expand=True)
@@ -112,15 +112,61 @@ def EmailPrompt():
 
 
 # Used for saving user login info
-def EmailPrompt():
+def LoginPrompt():
     clearWindow(root)
+    
+    # Setting up tkInter window
+    login = tk.Tk()
+    login.geometry("300x150")
+    login.resizable(False, False)
+    login.title("Sign in")
+    
+    # Setting up Variables
 
+    # Email variables, labels, and boxes
+    emailLabel = ttk.Label(login, text="Email Address:")
+    emailVar = tk.StringVar()
+    emailBox = ttk.Entry(login, textvariable=emailVar)
+    email = emailVar.get()
 
+    # Password variables, labels, boxes
+    passwordLabel = ttk.Label(login, text="Password:")
+    passwordVar = tk.StringVar()
+    passwordBox = tk.Entry(login, textvariable=passwordVar, show="*")
+    password = passwordVar.get()
 
+    # saves user info to file
+    def writeToFile():
+        # Making sure a valid email or password has been typed in
+        if email == "" or password == "":
+            print("Enter a valid password, exiting...")
+            clearWindow(login)
 
+        # Writing email & password to files
+        with open("email.txt", 'w') as e:
+            e.seek(0)
+            e.write(email)
+            e.truncate()
+        with open("password.txt", 'w') as p:
+            p.seek(0)
+            p.write(password)
+            p.truncate()
+        
+    # Button for logging in
+    loginButton = ttk.Button(login, text="Login", command=writeToFile())
+    
+    # Packing variables, labels, and input boxes
+    emailLabel.pack(fill='x', expand=True)
+    emailBox.pack(fill='x', expand=True)
 
+    passwordLabel.pack(fill='x', expand=True)
+    passwordBox.pack(fill='x', expand=True)
 
+    loginButton.pack(fill='x', expand=True)
 
+    # Exiting & checking for updates / button clicks
+    login.mainloop()
+    clearWindow(login)
 
 # Labeling
 welcomeLabel = ttk.Label(
@@ -135,7 +181,7 @@ detailLabel = ttk.Label(
 # User input, used for asking if the user's details are saved
 yesButton = tk.Button(
     root,
-    text="Yes"
+    text="Yes",
     command=lambda: EmailPrompt())
 
 noButton = tk.Button(
@@ -143,3 +189,11 @@ noButton = tk.Button(
     text="No",
     command=lambda: LoginPrompt())
 
+# Packing buttons & labels
+welcomeLabel.pack(padx=30, pady=0)
+detailLabel.pack(padx=10, pady=5)
+
+yesButton.pack(padx=0, pady=0)
+noButton.pack(padx=0, pady=0)
+
+root.mainloop()

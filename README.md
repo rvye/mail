@@ -8,6 +8,7 @@ mail client in python
 # Thanks
 
 * [Python](https://python.org) for the language, and documentation
+* [Google](https://google.org) for the SMTP server
 
 # How to Use
 

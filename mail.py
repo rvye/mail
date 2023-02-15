@@ -7,9 +7,6 @@ import tkinter as tk
 import smtplib as sm
 from tkinter import ttk
 
-# Variables, used later
-saved = False
-
 # Setting up tkInter window
 root = tk.Tk()
 root.geometry("200x100")

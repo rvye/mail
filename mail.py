@@ -20,7 +20,7 @@ root.title("mail")
 def clearWindow(*widgets):
     for widget in widgets:
         # Exits each window defined in *widgets
-        widget.destroy
+        widget.destroy()
 
 """""
 This is only called if the user clicks yes when asked
@@ -139,8 +139,7 @@ def LoginPrompt():
     def writeToFile():
         # Making sure a valid email or password has been typed in
         if email == "" or password == "":
-            print("Enter a valid password, exiting...")
-            clearWindow(login)
+            print("Enter a valid password")
 
         # Writing email & password to files
         with open("email.txt", 'w') as e:
@@ -166,7 +165,7 @@ def LoginPrompt():
 
     # Exiting & checking for updates / button clicks
     login.mainloop()
-    clearWindow(login)
+    sys.exit()
 
 # Labeling
 welcomeLabel = ttk.Label(

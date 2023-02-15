@@ -83,7 +83,6 @@ def EmailPrompt():
 
             # Actually sending the email
             mail.sendmail(user, to, body)
-	    mail.quit()
             return 1
 
         except exception as ex:

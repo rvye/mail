@@ -33,11 +33,13 @@ def EmailPrompt():
     prompt.geometry("200x200")
     prompt.resizable(True, True)
     prompt.title("Send your Email")
+    
     """""""""
     Setting up the variables
     used when sending the email
     aswell as labeling them
     """""""""
+    
     # To variables
     toInput = tk.StringVar()
     toLabel = ttk.Label(prompt, text="Who would you like to send this to?")
